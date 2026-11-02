@@ -1,0 +1,212 @@
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local ScreenGui = Instance.new("ScreenGui")
+local TextLabel = Instance.new("TextLabel")
+local Frame = Instance.new("Frame")
+local TextButton = Instance.new("TextButton")
+local inserttext = Instance.new("TextBox")
+
+--Properties:
+
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+TextLabel.Parent = ScreenGui
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.BackgroundTransparency = 1.000
+TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel.BorderSizePixel = 0
+TextLabel.Position = UDim2.new(0.426899463, 0, 0.1875, 0)
+TextLabel.Size = UDim2.new(0, 392, 0, 51)
+TextLabel.Font = Enum.Font.SourceSans
+TextLabel.Text = "Crack"
+TextLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel.TextScaled = true
+TextLabel.TextSize = 14.000
+TextLabel.TextWrapped = true
+TextLabel.TextXAlignment = Enum.TextXAlignment.Left
+
+Frame.Parent = TextLabel
+Frame.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
+Frame.BackgroundTransparency = 0.500
+Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Frame.BorderSizePixel = 0
+Frame.Position = UDim2.new(-0.0174610373, 0, -0.00843601581, 0)
+Frame.Size = UDim2.new(0, 398, 0, 275)
+
+TextButton.Parent = Frame
+TextButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+TextButton.BackgroundTransparency = 0.600
+TextButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextButton.BorderSizePixel = 0
+TextButton.Position = UDim2.new(0.0452776588, 0, 0.82593441, 0)
+TextButton.Size = UDim2.new(0, 358, 0, 40)
+TextButton.Font = Enum.Font.SourceSans
+TextButton.Text = "Execute"
+TextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton.TextSize = 14.000
+
+inserttext.Name = "inserttext"
+inserttext.Parent = Frame
+inserttext.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+inserttext.BorderColor3 = Color3.fromRGB(0, 0, 0)
+inserttext.BorderSizePixel = 0
+inserttext.Position = UDim2.new(0.0452776588, 0, 0.191616207, 0)
+inserttext.Size = UDim2.new(0, 357, 0, 164)
+inserttext.Font = Enum.Font.SourceSans
+inserttext.PlaceholderText = "-- Made by Vata909tt -- Have fun using this shit --"
+inserttext.Text = ""
+inserttext.TextColor3 = Color3.fromRGB(0, 0, 0)
+inserttext.TextSize = 14.000
+inserttext.TextXAlignment = Enum.TextXAlignment.Left
+inserttext.TextYAlignment = Enum.TextYAlignment.Top
+
+-- Scripts:
+
+local function IFGRN_fake_script() -- Frame.DragScript 
+	local script = Instance.new('LocalScript', Frame)
+
+	local UIS = game:GetService("UserInputService")
+	
+	local frame = script.Parent.Parent
+	local dragToggle = false
+	local dragSpeed = 0
+	local dragStart
+	local startPos
+	
+	local function updateInput(input)
+		local delta = input.Position - dragStart
+	
+		local position = UDim2.new(
+			startPos.X.Scale,
+			startPos.X.Offset + delta.X,
+			startPos.Y.Scale,
+			startPos.Y.Offset + delta.Y
+		)
+	
+		game:GetService("TweenService"):Create(
+			frame,
+			TweenInfo.new(dragSpeed),
+			{Position = position}
+		):Play()
+	end
+	
+	
+	frame.InputBegan:Connect(function(input)
+	
+		if input.UserInputType == Enum.UserInputType.MouseButton1 
+			or input.UserInputType == Enum.UserInputType.Touch then
+	
+			dragToggle = true
+			dragStart = input.Position
+			startPos = frame.Position
+	
+			input.Changed:Connect(function()
+	
+				if input.UserInputState == Enum.UserInputState.End then
+					dragToggle = false
+				end
+	
+			end)
+	
+		end
+	
+	end)
+	
+	
+	UIS.InputChanged:Connect(function(input)
+	
+		if input.UserInputType == Enum.UserInputType.MouseMovement
+			or input.UserInputType == Enum.UserInputType.Touch then
+	
+			if dragToggle then
+				updateInput(input)
+			end
+	
+		end
+	
+	end)
+end
+coroutine.wrap(IFGRN_fake_script)()
+local function XZSHYN_fake_script() -- Frame.LocalScript 
+	local script = Instance.new('LocalScript', Frame)
+
+	local ReplicatedStorage = game:GetService("ReplicatedStorage")
+	local ButtonPressed = ReplicatedStorage:WaitForChild("pneumonoultramicroscopicsillicovolcanoconiosis1303333333")
+	
+	local textBox = script.Parent.inserttext
+	local button = script.Parent.TextButton
+	
+	button.MouseButton1Click:Connect(function()
+		ButtonPressed:FireServer(textBox.Text)
+	end)
+end
+coroutine.wrap(XZSHYN_fake_script)()
+local function YZJQH_fake_script() -- TextLabel.DragScript 
+	local script = Instance.new('LocalScript', TextLabel)
+
+	local UIS = game:GetService("UserInputService")
+	
+	local frame = script.Parent
+	local dragToggle = false
+	local dragSpeed = 0
+	local dragStart
+	local startPos
+	
+	local function updateInput(input)
+		local delta = input.Position - dragStart
+	
+		local position = UDim2.new(
+			startPos.X.Scale,
+			startPos.X.Offset + delta.X,
+			startPos.Y.Scale,
+			startPos.Y.Offset + delta.Y
+		)
+	
+		game:GetService("TweenService"):Create(
+			frame,
+			TweenInfo.new(dragSpeed),
+			{Position = position}
+		):Play()
+	end
+	
+	
+	frame.InputBegan:Connect(function(input)
+	
+		if input.UserInputType == Enum.UserInputType.MouseButton1 
+			or input.UserInputType == Enum.UserInputType.Touch then
+	
+			dragToggle = true
+			dragStart = input.Position
+			startPos = frame.Position
+	
+			input.Changed:Connect(function()
+	
+				if input.UserInputState == Enum.UserInputState.End then
+					dragToggle = false
+				end
+	
+			end)
+	
+		end
+	
+	end)
+	
+	
+	UIS.InputChanged:Connect(function(input)
+	
+		if input.UserInputType == Enum.UserInputType.MouseMovement
+			or input.UserInputType == Enum.UserInputType.Touch then
+	
+			if dragToggle then
+				updateInput(input)
+			end
+	
+		end
+	
+	end)
+end
+coroutine.wrap(YZJQH_fake_script)()
